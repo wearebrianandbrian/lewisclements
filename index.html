@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lewis Clements</title>
+<meta name="description" content="Lewis Clements: award-winning trailer editor, director and senior creative for TV, film and social.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<style>
+/* Homepage mockup. Trailer grammar up top (hard-cut title cards over the reel), then cinematic black and bone bands; colour saved for the work. */
+:root{
+  --night:#0C0B0F;      /* ground; ink on light bands */
+  --paper:#EFEBE4;      /* bone: the serious, editorial bands */
+  --lemon:#EBCB3A;      /* the one accent: buttons, badges, medals */
+  --plum:#24163F;       /* social band only */
+  --line:rgba(255,255,255,.16);
+  --white:#fff;
+  --f:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --wrap:1280px;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--white);font-family:var(--f);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+p,h1,h2,h3,ul,ol,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+:focus-visible{outline:3px solid var(--lemon);outline-offset:3px}
+.band{padding-inline:var(--gutter)}
+.wrap{max-width:var(--wrap);margin-inline:auto}
+
+/* Title-card type: ultra-condensed black caps, like a trailer end board */
+.card-type{font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-.01em}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background .25s}
+.nav.solid{background:color-mix(in srgb,var(--night) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.mark{white-space:nowrap;font-stretch:62%;font-weight:900;font-size:26px;text-transform:uppercase;text-decoration:none;letter-spacing:.01em}
+.right{display:flex;align-items:center;gap:10px}
+.menu{position:relative}
+.menu summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;border:2px solid currentColor;font-weight:600;font-size:15px;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary::after{content:"";width:7px;height:7px;border-right:2px solid;border-bottom:2px solid;rotate:45deg;translate:0 -2px;transition:rotate .2s,translate .2s}
+.menu[open] summary::after{rotate:225deg;translate:0 2px}
+.menu ol{position:absolute;right:0;top:calc(100% + 10px);display:flex;flex-direction:column;min-width:200px;padding:8px;margin:0;list-style:none;background:var(--night);color:var(--white);border:1px solid color-mix(in srgb,var(--white) 14%,transparent);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.4);font-size:16px}
+.menu ol a{display:block;padding:10px 14px;border-radius:10px;text-decoration:none}
+.menu ol a:hover,.menu ol a:focus-visible{background:color-mix(in srgb,var(--white) 10%,transparent)}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;background:var(--lemon);color:var(--night);transition:background .15s}
+.pill:hover{background:var(--white)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero-reel{position:absolute;inset:0;z-index:-2}
+.hero-reel video{width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(12,11,15,.4) 0%,rgba(12,11,15,0) 30%,rgba(12,11,15,.6) 62%,var(--night) 100%)}
+.hero .wrap{width:100%;padding-block:120px clamp(40px,7vh,80px);display:grid;gap:22px;position:relative}
+.name{font-size:clamp(84px,17vw,270px);color:var(--white)}
+.name span{display:block}
+.roles{font-size:clamp(20px,2.2vw,28px);font-weight:500;max-width:36ch;line-height:1.25}
+.hero-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
+.kicker{justify-self:start;background:var(--lemon);color:var(--night);font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px}
+.ghost{display:inline-flex;align-items:center;padding:11px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:2px solid var(--white)}
+.ghost:hover{background:var(--white);color:var(--night)}
+
+/* made-for strip */
+.made{color:var(--white);padding-block:22px;overflow:hidden;border-block:1px solid var(--line)}
+.made .wrap{display:flex;align-items:center;gap:22px}
+.made .label{flex:none;font-size:15px;opacity:.6}
+.marquee{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.track{display:flex;align-items:center;gap:28px;width:max-content;animation:slide 60s linear infinite}
+.chan{flex:none;padding:4px 18px;font-stretch:75%;font-weight:800;font-size:24px;white-space:nowrap;color:#fff}
+/* logos all shown in white so different brand colours sit together calmly */
+.brand{flex:none;align-self:center;width:auto;margin-inline:18px;opacity:1}
+.brand.tall{height:58px}.brand.crest{height:50px}.brand.mid{height:38px}.brand.square{height:22px}.brand.wide{height:24px}
+@keyframes slide{to{transform:translateX(calc(-50% - 14px))}}
+
+/* section heads */
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px 40px;margin-bottom:40px}
+.head h2{font-size:clamp(76px,12vw,180px)}
+.head p{max-width:38ch;font-size:18px;opacity:.9}
+
+/* trailers */
+.trailers .wrap{padding-block:clamp(72px,10vw,120px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 22px}
+section[id]{scroll-margin-top:64px}
+.cut{display:grid;gap:12px;align-content:start;min-width:0;text-decoration:none}
+.cut.feature{grid-column:span 2;grid-row:span 2}
+.frame{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000 center/cover no-repeat;border:1px solid var(--line)}
+.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .2s}
+.frame.playing video{opacity:1}
+.cut:hover .frame{border-color:var(--lemon)}
+.cut.feature{display:flex;flex-direction:column;gap:12px}
+.cut.feature .frame{aspect-ratio:auto;flex:1;min-height:340px}
+#social{overflow-x:clip} /* stop the phone row widening the page */
+.badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--lemon);color:var(--night);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
+.cut h3{font-size:21px;font-weight:700;line-height:1.15}
+.cut.feature h3{font-size:clamp(28px,3vw,40px);font-stretch:75%;font-weight:800}
+.meta{font-size:14px;opacity:.75}
+.feature .cap{display:grid;gap:4px}
+
+/* directed */
+.directed{background:var(--paper);color:var(--night);overflow:hidden}
+.directed .wrap{padding-block:clamp(72px,10vw,120px)}
+.directed h2{font-size:clamp(64px,8.4vw,128px)}
+.directed .lede{font-size:clamp(18px,1.7vw,22px);max-width:34ch}
+.shots{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:22px 18px}
+.shot{display:grid;gap:8px;text-decoration:none;font-weight:700;font-size:15px;min-width:0}
+.shot.big{grid-row:span 2}
+.shot.big .frame{aspect-ratio:16/9;flex:none}
+.shot.big{display:flex;flex-direction:column}
+.shot .frame{border:0}
+.shot:hover .frame{outline:3px solid var(--night);outline-offset:3px}
+.social{background:linear-gradient(165deg,var(--plum) 0%,#311C57 60%,#1A1030 100%)}
+.social .wrap{padding-block:clamp(72px,10vw,120px)}
+.phones{position:relative;display:flex;justify-content:center;align-items:flex-start;min-height:560px;padding-top:30px}
+.phone{position:relative;flex:none;width:clamp(140px,14.5vw,225px);aspect-ratio:9/16;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;border:6px solid var(--night);border-radius:26px;overflow:hidden;background:#000 center/cover;box-shadow:0 18px 40px rgba(0,0,0,.45);outline:3px solid transparent;outline-offset:0}
+.phone video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+/* hover: the phone lifts to the front and pulses (scale/outline, so the fan rotation stays put) */
+.phone:hover,.phone:focus-visible{z-index:20!important;animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{
+  0%,100%{scale:1.04;outline-color:rgba(255,225,77,.9);outline-offset:0}
+  50%{scale:1.1;outline-color:rgba(255,225,77,0);outline-offset:14px}
+}
+.watch{position:absolute;top:50%;left:50%;translate:-50% -50%;z-index:2;background:var(--lemon);color:var(--night);border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px;white-space:nowrap;opacity:0;transition:opacity .15s}
+.phone:hover .watch,.phone:focus-visible .watch{opacity:1}
+.phones .phone{margin-inline:-16px;transform:rotate(calc(var(--k) * 4.5deg)) translateY(calc(var(--a) * var(--a) * 7px));z-index:calc(10 - var(--a))}
+.phones .phone[style*="--a:0"]{transform:translateY(-18px) scale(1.06)}
+/* phones fly in when the Social section scrolls into view: centre first, then outwards in pairs */
+.phones.will-fly .phone{opacity:0;translate:calc(var(--k) * 60px) 110%;rotate:calc(var(--k) * -14deg - 6deg);
+  transition:translate .8s cubic-bezier(.34,1.45,.64,1),rotate .8s cubic-bezier(.34,1.45,.64,1),opacity .3s ease-out;
+  transition-delay:calc(var(--a) * 140ms)}
+.phones.will-fly.in .phone{opacity:1;translate:0 0;rotate:0deg}
+@media (prefers-reduced-motion:reduce){.phones.will-fly .phone{opacity:1;translate:none;rotate:none;transition:none}}
+/* watch pop-up */
+.player{padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+.player::backdrop{background:rgba(12,11,15,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.player[open]{display:grid;place-items:center;gap:14px}
+.player video{height:min(82vh,calc((100vw - 32px) * 16 / 9));width:auto;aspect-ratio:9/16;border-radius:18px;background:#000}
+.player .close{position:fixed;top:max(16px,env(safe-area-inset-top,0px));right:16px;background:var(--lemon);color:var(--night);border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+.player .title{color:var(--white);font-weight:700}
+
+/* more work */
+.more{border-top:1px solid var(--line)}
+.more .wrap{padding-block:clamp(72px,10vw,120px)}
+.more .head h2{font-size:clamp(56px,8vw,120px)}
+.more-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 18px}
+.more-grid a{display:grid;gap:8px;text-decoration:none}
+.more-grid .frame{aspect-ratio:16/9}
+.more-grid b{font-size:17px;font-weight:600;line-height:1.2}
+.more-grid span{font-size:14px;opacity:.65}
+.more-grid a:hover .frame{border-color:var(--lemon)}
+
+/* awards */
+.awards{color:var(--white)}
+.awards .wrap{padding-block:clamp(72px,10vw,120px)}
+.wins{display:grid;border-top:1px solid rgba(255,255,255,.5)}
+.wins li{display:grid;grid-template-columns:minmax(110px,.6fr) minmax(0,2fr) minmax(0,1.4fr);gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.medal{color:var(--lemon);font-stretch:62%;font-weight:900;font-size:clamp(34px,4vw,52px);line-height:.9;text-transform:uppercase}
+.wins b{font-size:20px;font-weight:600}
+.wins li>span:last-child{opacity:.7}
+
+/* about + contact */
+.about{background:var(--paper);color:var(--night)}
+.about .wrap{padding-block:clamp(72px,10vw,120px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
+.portrait{border-radius:10px;overflow:hidden}
+.about h2{font-size:clamp(64px,9vw,130px);margin-bottom:22px}
+.about p{max-width:52ch;margin-bottom:14px;font-size:18px}
+.contact{border-top:1px solid var(--line)}
+.contact .wrap{padding-block:clamp(72px,10vw,120px);display:grid;gap:26px}
+.contact h2{font-size:clamp(64px,11vw,170px)}
+.contact p{font-size:clamp(18px,1.7vw,22px);max-width:40ch;opacity:.85}
+.links{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:center}
+.email{font-size:clamp(22px,3.4vw,46px);font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;overflow-wrap:anywhere}
+.email:hover{color:var(--lemon)}
+.ghost.dark{border-color:var(--white)}
+.foot{padding-block:22px;font-size:14px;opacity:.7}
+.foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cut.feature{grid-column:1/-1;grid-row:auto}
+  .cut.feature .frame{aspect-ratio:16/9;flex:none;min-height:0}
+  .about .wrap{grid-template-columns:1fr}
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shot.big{grid-column:1/-1;grid-row:auto}
+  .shot.big .frame{aspect-ratio:16/9;flex:none}
+  .phones{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;min-height:0;padding:30px 4px 18px;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter)}
+  .phones .phone{transform:none!important;margin-inline:0;scroll-snap-align:start;width:170px}
+  .wins li{grid-template-columns:1fr;gap:4px}
+  .more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .portrait{max-width:420px}
+}
+@media (max-width:560px){
+  .mark{font-size:22px}
+  .nav .pill{padding:9px 16px;font-size:14px}
+  .nav .right .pill{display:none}
+  .menu summary{padding:8px 16px;font-size:14px}
+  .grid{grid-template-columns:1fr}
+  .made .wrap{flex-direction:column;align-items:flex-start;gap:12px}
+  .marquee{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .track{animation:none}
+  .phone:hover,.phone:focus-visible{animation:none;scale:1.04;outline-color:var(--lemon)}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap band">
+    <a class="mark" href="#top">Lewis Clements</a>
+    <div class="right">
+      <a class="pill" href="#contact">Get in touch</a>
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav aria-label="Main"><ol>
+          <li><a href="#trailers">Trailers</a></li>
+          <li><a href="#directed">Directed</a></li>
+          <li><a href="#social">Social</a></li>
+          <li><a href="#more">More trailers</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol></nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero band" aria-label="Introduction">
+    <div class="hero-reel">
+      <video id="reel" autoplay muted loop playsinline preload="auto" poster="media/reel/reel.poster.jpg">
+        <source src="media/reel/reel-mobile.mp4" type="video/mp4" media="(max-width: 600px)">
+        <source src="media/reel/reel.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="wrap">
+      <h1 class="name card-type"><span>Lewis</span><span>Clements</span></h1>
+      <p class="kicker">Senior Creative, Trailer Editor &amp; Director</p>
+      <p class="roles">Multi-award-winning trailers, campaigns and social for TV, film and brands.</p>
+      <div class="hero-foot">
+        <a class="pill" href="#trailers">Watch the work</a>
+        <a class="ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="made" aria-label="Brands I’ve worked with">
+    <div class="wrap band">
+      <p class="label">Worked with</p>
+      <div class="marquee"><div class="track">
+        <img class="brand tall" src="media/logos/channel-4-white.png" alt="Channel 4"><img class="brand tall" src="media/logos/e4-white.png" alt="E4"><img class="brand tall" src="media/logos/e4-extra-white.png" alt="E4 Extra"><img class="brand tall" src="media/logos/film4-white.png" alt="Film4"><span class="chan">4Music</span><span class="chan">Channel 4+</span><img class="brand square" src="media/logos/currys-white.png" alt="Currys"><img class="brand wide" src="media/logos/screwfix-white.png" alt="Screwfix"><img class="brand wide" src="media/logos/toolstation-white.png" alt="Toolstation"><img class="brand wide" src="media/logos/bosch-white.png" alt="Bosch"><span class="chan">Manchester City</span><span class="chan">Arsenal</span><img class="brand crest" src="media/logos/warner-bros-white.png" alt="Warner Bros."><img class="brand crest" src="media/logos/wwe-white.png" alt="WWE"><img class="brand mid" src="media/logos/gymshark-white.png" alt="Gymshark"><span class="chan">BT Sport</span>
+        <img class="brand tall" src="media/logos/channel-4-white.png" alt="" aria-hidden="true"><img class="brand tall" src="media/logos/e4-white.png" alt="" aria-hidden="true"><img class="brand tall" src="media/logos/e4-extra-white.png" alt="" aria-hidden="true"><img class="brand tall" src="media/logos/film4-white.png" alt="" aria-hidden="true"><span class="chan" aria-hidden="true">4Music</span><span class="chan" aria-hidden="true">Channel 4+</span><img class="brand square" src="media/logos/currys-white.png" alt="" aria-hidden="true"><img class="brand wide" src="media/logos/screwfix-white.png" alt="" aria-hidden="true"><img class="brand wide" src="media/logos/toolstation-white.png" alt="" aria-hidden="true"><img class="brand wide" src="media/logos/bosch-white.png" alt="" aria-hidden="true"><span class="chan" aria-hidden="true">Manchester City</span><span class="chan" aria-hidden="true">Arsenal</span><img class="brand crest" src="media/logos/warner-bros-white.png" alt="" aria-hidden="true"><img class="brand crest" src="media/logos/wwe-white.png" alt="" aria-hidden="true"><img class="brand mid" src="media/logos/gymshark-white.png" alt="" aria-hidden="true"><span class="chan" aria-hidden="true">BT Sport</span>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="trailers band" id="trailers">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="card-type">Trailers</h2>
+        <p>Award-winning launch trailers, teasers and campaigns for some of the UK’s biggest broadcasters and entertainment brands.</p>
+      </div>
+      <div class="grid">
+        <a class="cut feature" href="project.html?p=crank-up-the-comedy">
+          <div class="frame" style="background-image:url(media/cuts/crank.jpg)"><span class="badge">GEMA 2026 nominee</span><video muted loop playsinline preload="none" src="media/cuts/crank.mp4"></video></div>
+          <div class="cap"><h3>Crank Up the Comedy</h3><p class="meta">Channel 4</p></div>
+        </a>
+        <a class="cut" href="project.html?p=criminally-funny">
+          <div class="frame" style="background-image:url(media/cuts/criminally.jpg)"><span class="badge">Silver, GEMA 2025</span><video muted loop playsinline preload="none" src="media/cuts/criminally.mp4"></video></div>
+          <h3>Criminally Funny</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=easters-really-good">
+          <div class="frame" style="background-image:url(media/cuts/easters.jpg)"><span class="badge">GEMA 2025 nominee</span><video muted loop playsinline preload="none" src="media/cuts/easters.mp4"></video></div>
+          <h3>Easter’s Really Good</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=celeb-sas">
+          <div class="frame" style="background-image:url(media/cuts/celebsas.jpg)"><video muted loop playsinline preload="none" src="media/cuts/celebsas.mp4"></video></div>
+          <h3>Celebrity SAS: Who Dares Winds</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=tom-cruise-week">
+          <div class="frame" style="background-image:url(media/cuts/tomcruise.jpg)"><span class="badge">GEMA 2025 nominee</span><video muted loop playsinline preload="none" src="media/cuts/tomcruise.mp4"></video></div>
+          <h3>Tom Cruise Week</h3><p class="meta">Film4</p>
+        </a>
+        <a class="cut" href="project.html?p=virgin-island">
+          <div class="frame" style="background-image:url(media/cuts/virginisland.jpg)"><span class="badge">GEMA 2025 nominee</span><video muted loop playsinline preload="none" src="media/cuts/virginisland.mp4"></video></div>
+          <h3>Virgin Island</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=celebrity-gogglebox">
+          <div class="frame" style="background-image:url(media/cuts/gogglebox.jpg)"><span class="badge">Gold, Promax 2023</span><video muted loop playsinline preload="none" src="media/cuts/gogglebox.mp4"></video></div>
+          <h3>Celebrity Gogglebox</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=mitchell-and-webb">
+          <div class="frame" style="background-image:url(media/cuts/mitchellwebb.jpg)"><video muted loop playsinline preload="none" src="media/cuts/mitchellwebb.mp4"></video></div>
+          <h3>Mitchell and Webb Are Not Helping</h3><p class="meta">Channel 4</p>
+        </a>
+        <a class="cut" href="project.html?p=everyone-else-burns">
+          <div class="frame" style="background-image:url(media/cuts/eeb.jpg)"><video muted loop playsinline preload="none" src="media/cuts/eeb.mp4"></video></div>
+          <h3>Everyone Else Burns</h3><p class="meta">Channel 4</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="directed band" id="directed">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="card-type">Directing</h2>
+        <p class="lede">I direct too, leading shoots with high-profile talent, so I can take a brief from the first idea all the way to the final cut.</p>
+      </div>
+      <div class="shots">
+        <a class="shot big" href="project.html?p=bake-off"><div class="frame" style="background-image:url(media/directed/bakeoff.jpg)"><video muted loop playsinline preload="none" src="media/directed/bakeoff.mp4"></video></div><span>The Great British Bake Off</span></a>
+        <a class="shot" href="project.html?p=joe-wicks"><div class="frame" style="background-image:url(media/directed/wicks.jpg)"><span class="badge">GEMA 2026 nominee</span><video muted loop playsinline preload="none" src="media/directed/wicks.mp4"></video></div><span>Joe Wicks: Licensed to Kill</span></a>
+        <a class="shot" href="project.html?p=married-at-first-sight"><div class="frame" style="background-image:url(media/directed/mafs.jpg)"><video muted loop playsinline preload="none" src="media/directed/mafs.mp4"></video></div><span>Married at First Sight UK</span></a>
+        <a class="shot" href="project.html?p=late-night-lycett"><div class="frame" style="background-image:url(media/directed/lycett.jpg)"><span class="badge">Gold, GEMA 2024</span><video muted loop playsinline preload="none" src="media/directed/lycett.mp4"></video></div><span>Late Night Lycett</span></a>
+        <a class="shot" href="project.html?p=on-the-tools"><div class="frame" style="background-image:url(media/directed/onthetools.jpg)"><video muted loop playsinline preload="none" src="media/directed/onthetools.mp4"></video></div><span>On the Tools</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="social band" id="social">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="card-type">Social</h2>
+        <p>From the hero trailer to every last social version, each one built for its platform.</p>
+      </div>
+      <div class="phones">
+        <button type="button" class="phone" style="--k:-3;--a:3;background-image:url(media/social/dexter.jpg)" data-full="media/dexter/tiktok.mp4" data-project="dexter" data-title="Dexter" aria-label="Watch Dexter"><video muted loop playsinline preload="none" src="media/social/dexter.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:-2;--a:2;background-image:url(media/social/criminally.jpg)" data-full="media/criminally-funny/social-2.mp4" data-project="criminally-funny" data-title="Criminally Funny" aria-label="Watch Criminally Funny"><video muted loop playsinline preload="none" src="media/social/criminally.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:-1;--a:1;background-image:url(media/social/belowdeck.jpg)" data-full="media/below-deck/social-1.mp4" data-project="below-deck" data-title="Below Deck" aria-label="Watch Below Deck"><video muted loop playsinline preload="none" src="media/social/belowdeck.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:0;--a:0;background-image:url(media/social/crank.jpg)" data-full="media/crank-up-the-comedy/social-1.mp4" data-project="crank-up-the-comedy" data-title="Crank Up the Comedy" aria-label="Watch Crank Up the Comedy"><video muted loop playsinline preload="none" src="media/social/crank.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:1;--a:1;background-image:url(media/social/mitchellwebb.jpg)" data-full="media/mitchell-webb/mw-2.mp4" data-project="mitchell-and-webb" data-title="Mitchell and Webb" aria-label="Watch Mitchell and Webb"><video muted loop playsinline preload="none" src="media/social/mitchellwebb.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:2;--a:2;background-image:url(media/social/wicks.jpg)" data-full="media/joe-wicks/reel-vertical.mp4" data-project="joe-wicks" data-title="Joe Wicks" aria-label="Watch Joe Wicks"><video muted loop playsinline preload="none" src="media/social/wicks.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+        <button type="button" class="phone" style="--k:3;--a:3;background-image:url(media/social/ramsay.jpg)" data-full="media/ramsay/ramsay-2.mp4" data-project="ramsays-kitchen-nightmares-usa" data-title="Ramsay USA" aria-label="Watch Ramsay USA"><video muted loop playsinline preload="none" src="media/social/ramsay.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="more band" id="more">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="card-type">More trailers</h2>
+        <p>Channel promos, film premieres and seasons.</p>
+      </div>
+      <ul class="more-grid" id="more-grid"></ul>
+    </div>
+  </section>
+
+  <section class="awards band" id="awards">
+    <div class="wrap">
+      <div class="head"><h2 class="card-type">Awards</h2></div>
+      <ul class="wins">
+        <li><span class="medal">Gold</span><b>Late Night Lycett</b><span>Best Use of Humour, GEMA 2024</span></li>
+        <li><span class="medal">Gold</span><b>Celebrity Gogglebox (Goggleheads)</b><span>Best Entertainment/Reality, Promax 2023</span></li>
+        <li><span class="medal">Silver</span><b>Criminally Funny Comedy</b><span>Best Comedy, GEMA 2025</span></li>
+        <li><span class="medal">Silver</span><b>Married at First Sight Australia</b><span>Promax 2023</span></li>
+        <li><span class="medal">Bronze</span><b>Scared of the Dark</b><span>Best Entertainment, Promax 2023</span></li>
+        <li><span class="medal">Winner</span><b>The Unusuals</b><span>Overall Winner, Short is Beautiful Film Festival. Best Web-Series, Leicester Film Festival. Best TV Pilot, Staffordshire Film Festival. Best Comedy, RS Film Festival. Best Comedy, Birmingham Film Festival. All 2023.</span></li>
+        <li><span class="medal">Named</span><b>Faces to Watch</b><span>Campaign, 2023</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about band" id="about">
+    <div class="wrap">
+      <figure class="portrait"><img src="media/about/lewis.jpg" width="1200" height="1200" loading="lazy" alt="Lewis Clements holding a gold Promax UK award at the 2023 ceremony"></figure>
+      <div>
+        <h2 class="card-type">Hi, I’m Lewis</h2>
+        <p>I’m a multi-award-winning Senior Creative and Trailer Editor, with over 10 years’ experience editing, directing and crafting trailers and campaigns for TV, film and social.</p>
+        <p>I work across creative and edit, and I direct too, leading shoots with high-profile talent for shows like The Great British Bake Off, Married at First Sight UK, The Piano and Late Night Lycett. That means I can take a brief from the first idea all the way to the final cut, from the hero trailer to every last social version.</p>
+        <p>Along the way I’ve made award-winning launch trailers, teasers and social campaigns for some of the UK’s biggest broadcasters and entertainment brands.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact band" id="contact">
+    <div class="wrap">
+      <h2 class="card-type">Get in touch</h2>
+      <p>Have a trailer, a campaign, some social or a role in mind? Send me a message and I’ll get back to you.</p>
+      <a class="email" href="mailto:lewisanthonyclements@gmail.com">lewisanthonyclements@gmail.com</a>
+      <div class="links"><a class="pill" href="mailto:lewisanthonyclements@gmail.com">Email me</a><a class="ghost dark" href="https://www.linkedin.com/in/lewis-clements-878574139/">LinkedIn</a></div>
+    </div>
+  </section>
+</main>
+
+<dialog class="player" id="player" aria-label="Social cut">
+  <button type="button" class="close" id="player-close">Close</button>
+  <video id="player-video" controls playsinline></video>
+  <p class="title" id="player-title"></p>
+  <a class="pill" id="player-link" href="#">See the full campaign</a>
+</dialog>
+
+<footer class="foot band"><div class="wrap"><span>© Lewis Clements</span></div></footer>
+
+<script src="assets/projects.js"></script>
+<script>
+(function(){
+  // More trailers: every project not already on this page.
+  var onPage={};document.querySelectorAll('a[href^="project.html?p="],[data-project]').forEach(function(a){onPage[(a.dataset.project||a.getAttribute('href').split('=')[1])]=1});
+  var grid=document.getElementById('more-grid');
+  var hoverPlay=matchMedia('(hover: hover) and (pointer: fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // the funny ones lead; everything else keeps the order in projects.js
+  var first=['the-girl-from-plainville','filmfear','find-your-funny','stand-up-sundays','mafs-australia','mafs-uk-group-chat','below-deck','dexter'];
+  var last=['stage-mother','freaks'];
+  var rank=function(p){var i=first.indexOf(p.slug),j=last.indexOf(p.slug);return j>=0?first.length+1+j:i<0?first.length:i};
+  (window.PROJECTS||[]).filter(function(p){return !onPage[p.slug]}).map(function(p,i){return [rank(p),i,p]})
+    .sort(function(a,b){return a[0]-b[0]||a[1]-b[1]}).map(function(r){return r[2]}).forEach(function(p){
+    var li=document.createElement('li'),a=document.createElement('a'),f=document.createElement('div'),b=document.createElement('b'),c=document.createElement('span');
+    a.href='project.html?p='+p.slug;f.className='frame';f.style.backgroundImage='url("'+p.cover+'")';b.textContent=p.title;c.textContent=p.client;
+    a.append(f,b,c);li.append(a);grid.append(li);
+    // desktop only: a short silent clip plays while the pointer is over the card
+    if(hoverPlay){
+      var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.dataset.src='media/previews/'+p.slug+'.mp4';f.append(v);
+      a.addEventListener('mouseenter',function(){if(!v.src)v.src=v.dataset.src;var pr=v.play();if(pr)pr.then(function(){f.classList.add('playing')}).catch(function(){})});
+      a.addEventListener('mouseleave',function(){v.pause();f.classList.remove('playing');try{v.currentTime=0}catch(e){}});
+    }
+  });
+})();
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav gets a backing once you leave the hero.
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40)},{passive:true});
+
+
+  // Social phones: click to watch the full cut with sound.
+  var dlg=document.getElementById('player'),pv=document.getElementById('player-video'),pt=document.getElementById('player-title');
+  document.querySelectorAll('.phone[data-full]').forEach(function(b){
+    b.addEventListener('click',function(){
+      pv.src=b.dataset.full;document.getElementById('player-link').href='project.html?p='+b.dataset.project;pv.poster=b.style.backgroundImage.slice(5,-2);pt.textContent=b.dataset.title;
+      dlg.showModal();pv.muted=false;var p=pv.play();if(p)p.catch(function(){});
+    });
+  });
+  function shut(){dlg.close()}
+  document.getElementById('player-close').addEventListener('click',shut);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)shut()});
+  dlg.addEventListener('close',function(){pv.pause();pv.removeAttribute('src');pv.load()});
+
+  // Phones fly in the first time the Social section comes into view.
+  var fan=document.querySelector('.phones');
+  if(fan&&!reduce&&'IntersectionObserver' in window){
+    fan.classList.add('will-fly');
+    var fo=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ fan.classList.add('in'); fo.disconnect(); } },{threshold:.25});
+    fo.observe(fan);
+  }
+
+  // Previews play while on screen, pause when not.
+  var vids=document.querySelectorAll('.frame video,.phone video');
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){v.preload='auto';var p=v.play();if(p)p.then(function(){v.parentNode.classList.add('playing')}).catch(function(){})}
+      else{v.pause()}
+    })},{threshold:.5});
+    vids.forEach(function(v){io.observe(v)});
+  }
+})();
+</script>
+<script>
+// top-right menu: close on pick, outside click or Escape
+(function(){var m=document.querySelector('.menu');if(!m)return;
+m.addEventListener('click',function(e){if(e.target.closest('ol a'))m.open=false});
+document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.open=false;m.querySelector('summary').focus()}});})();
+</script>
+</body>
+</html>

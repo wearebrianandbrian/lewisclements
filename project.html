@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lewis Clements</title>
+<meta name="description" content="A campaign by Lewis Clements: trailer editor, director and senior creative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<style>
+/* Project page: one campaign in full. Same tokens as the homepage; the work carries the colour. */
+:root{
+  --night:#0C0B0F;
+  --paper:#EFEBE4;
+  --lemon:#EBCB3A;
+  --line:rgba(255,255,255,.16);
+  --white:#fff;
+  --f:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --wrap:1280px;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+  --row:clamp(300px,36vw,540px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--night);color:var(--white);font-family:var(--f);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,iframe{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+p,h1,h2,h3,ul,figure{margin:0;padding:0}
+:focus-visible{outline:3px solid var(--lemon);outline-offset:3px}
+.band{padding-inline:var(--gutter)}
+.wrap{max-width:var(--wrap);margin-inline:auto}
+.card-type{font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.01em}
+
+/* nav (matches homepage) */
+.nav{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--night) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.mark{white-space:nowrap;font-stretch:62%;font-weight:900;font-size:26px;text-transform:uppercase;text-decoration:none;letter-spacing:.01em}
+.right{display:flex;align-items:center;gap:10px}
+.menu{position:relative}
+.menu summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;border:2px solid currentColor;font-weight:600;font-size:15px;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary::after{content:"";width:7px;height:7px;border-right:2px solid;border-bottom:2px solid;rotate:45deg;translate:0 -2px;transition:rotate .2s,translate .2s}
+.menu[open] summary::after{rotate:225deg;translate:0 2px}
+.menu ol{position:absolute;right:0;top:calc(100% + 10px);display:flex;flex-direction:column;min-width:200px;padding:8px;margin:0;list-style:none;background:var(--night);color:var(--white);border:1px solid color-mix(in srgb,var(--white) 14%,transparent);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.4);font-size:16px}
+.menu ol a{display:block;padding:10px 14px;border-radius:10px;text-decoration:none}
+.menu ol a:hover,.menu ol a:focus-visible{background:color-mix(in srgb,var(--white) 10%,transparent)}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;background:var(--lemon);color:var(--night);transition:background .15s}
+.pill:hover{background:var(--white)}
+
+/* header */
+.top .wrap{padding-block:clamp(40px,6vw,80px) clamp(28px,4vw,48px);display:grid;gap:22px}
+.back{font-size:15px;opacity:.7;text-decoration:none;justify-self:start}
+.back:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;font-size:16px}
+.facts dt{opacity:.6;font-size:13px}
+.facts dd{margin:0;font-weight:600}
+.facts div{display:grid;gap:2px}
+.award{align-self:end;background:var(--lemon);color:var(--night);font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px}
+h1.card-type{font-size:clamp(56px,10vw,160px);max-width:14ch;text-wrap:balance}
+.intro{display:grid;gap:14px;max-width:62ch;font-size:clamp(18px,1.5vw,21px)}
+
+/* hero film */
+.hero .wrap{padding-bottom:clamp(48px,7vw,96px)}
+.hero video,.hero .yt{width:100%;aspect-ratio:16/9;background:#000;border-radius:8px}
+.hero video{height:auto}
+
+/* sections */
+.sec{border-top:1px solid var(--line)}
+.sec .wrap{padding-block:clamp(48px,6vw,80px);display:grid;gap:28px}
+.sec h2{font-size:clamp(40px,6vw,88px)}
+.sec.light{background:var(--paper);color:var(--night);border-top:0}
+.films{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px}
+.films.one{grid-template-columns:minmax(0,1fr)}
+.films video,.films .yt{width:100%;height:auto;aspect-ratio:16/9;background:#000;border-radius:8px;object-fit:contain}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start}
+.row figure{display:grid;gap:8px}
+.row video,.row img{height:var(--row);width:auto;max-width:100%;border-radius:8px;background:#000}
+/* poster + big play button, like the phones on the homepage */
+.vid{position:relative;display:inline-block;max-width:100%;line-height:0}
+.hero .vid,.films .vid{display:block}
+.play{position:absolute;inset:0;margin:0;padding:0;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;border-radius:8px}
+.play span{background:var(--lemon);color:var(--night);font:inherit;font-weight:700;font-size:15px;line-height:1;padding:12px 22px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .15s}
+.play:hover span,.play:focus-visible span{transform:scale(1.08)}
+figcaption{font-size:15px;font-weight:600;line-height:1.3}
+.sec.light figcaption{opacity:.85}
+
+/* YouTube: a poster until you press play, then the player */
+.yt{position:relative;padding:0;border:0;cursor:pointer;background:#000 center/cover no-repeat;color:var(--night);font:inherit;overflow:hidden}
+.yt span{position:absolute;left:50%;top:50%;translate:-50% -50%;background:var(--lemon);padding:10px 20px;border-radius:999px;font-weight:700;font-size:15px}
+.yt:hover span{background:var(--white)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* next */
+.next{background:var(--paper);color:var(--night)}
+.next .wrap{padding-block:clamp(56px,8vw,110px);display:grid;gap:14px}
+.next .label{font-size:15px;opacity:.7}
+.next a.title{text-decoration:none;font-size:clamp(56px,10vw,160px)}
+.next a.title:hover{text-decoration:underline;text-decoration-thickness:6px;text-underline-offset:10px}
+.missing .wrap{padding-block:120px;display:grid;gap:22px;justify-items:start}
+.foot{padding-block:22px;font-size:14px;opacity:.7}
+.foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:900px){
+  .films{grid-template-columns:minmax(0,1fr)}
+  .row{flex-direction:column}
+  .row figure{width:100%}
+  .row video,.row img{width:100%;height:auto;max-height:80vh;object-fit:contain}
+  .row .vid{display:block;width:100%}
+}
+@media (max-width:560px){
+  .mark{font-size:22px}
+  .nav .pill{padding:9px 16px;font-size:14px}
+  .nav .right .pill{display:none}
+  .menu summary{padding:8px 16px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap band">
+    <a class="mark" href="index.html">Lewis Clements</a>
+    <div class="right">
+      <a class="pill" href="index.html#contact">Get in touch</a>
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav aria-label="Main"><ol>
+          <li><a href="index.html#trailers">Trailers</a></li>
+          <li><a href="index.html#directed">Directed</a></li>
+          <li><a href="index.html#social">Social</a></li>
+          <li><a href="index.html#more">More trailers</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ol></nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main id="page"></main>
+
+<footer class="foot band"><div class="wrap"><span>© Lewis Clements</span><a href="mailto:lewisanthonyclements@gmail.com">lewisanthonyclements@gmail.com</a></div></footer>
+
+<script src="assets/projects.js"></script>
+<script>
+(function(){
+  var list=window.PROJECTS||[], page=document.getElementById('page');
+  var slug=new URLSearchParams(location.search).get('p');
+  var i=list.findIndex(function(p){return p.slug===slug}), p=list[i];
+
+  function el(tag,attrs,kids){
+    var n=document.createElement(tag);
+    for(var k in attrs||{}){ if(k==='text')n.textContent=attrs[k]; else if(attrs[k]!=null)n.setAttribute(k,attrs[k]); }
+    (kids||[]).forEach(function(c){ if(c)n.appendChild(c); });
+    return n;
+  }
+  function norm(it){ return typeof it==='string'?{src:it}:it; }
+  function posterFor(src){ return src.replace(/(\.mp4)(\?.*)?$/,'.poster.jpg'); }
+  function isImg(src){ return /\.(jpe?g|png|gif|webp)(\?.*)?$/i.test(src); }
+
+  function yt(item){
+    var b=el('button',{type:'button',class:'yt','aria-label':'Play '+(item.label||item.title||'video')+' on YouTube'},[el('span',{text:'Play'})]);
+    if(item.poster)b.style.backgroundImage='url("'+item.poster+'")';
+    b.addEventListener('click',function(){
+      b.replaceChildren(el('iframe',{src:'https://www.youtube-nocookie.com/embed/'+item.youtube+'?autoplay=1&rel=0',title:item.label||item.title||'YouTube video',allow:'autoplay; encrypted-media; picture-in-picture; fullscreen',allowfullscreen:''}));
+    },{once:true});
+    return b;
+  }
+  function media(item){
+    item=norm(item);
+    if(item.youtube) return yt(item);
+    if(isImg(item.src)) return el('img',{src:item.src,alt:item.alt||'',loading:'lazy'});
+    // Videos show their poster with a big play button; clicking it plays with sound and brings up the controls.
+    var v=el('video',{src:item.src,poster:item.poster||posterFor(item.src),playsinline:'',preload:'none'});
+    var b=el('button',{type:'button',class:'play','aria-label':'Play '+(item.label||'video')},[el('span',{text:'\u25B6 Play'})]);
+    b.addEventListener('click',function(){ b.remove(); v.controls=true; var pr=v.play(); if(pr)pr.catch(function(){}); });
+    return el('div',{class:'vid'},[v,b]);
+  }
+
+  if(!p){
+    document.title='Project not found | Lewis Clements';
+    page.appendChild(el('section',{class:'missing band'},[el('div',{class:'wrap'},[
+      el('h1',{class:'card-type',text:'Not found'}),
+      el('p',{text:'That project isn’t here. It may have moved.'}),
+      el('a',{class:'pill',href:'index.html#more',text:'See all the work'})
+    ])]));
+    return;
+  }
+
+  document.title=p.title+' | Lewis Clements';
+
+  // header
+  var facts=el('dl',{class:'facts'},[
+    el('div',{},[el('dt',{text:'Client'}),el('dd',{text:p.client})]),
+    p.award?el('span',{class:'award',text:p.award}):null
+  ]);
+  page.appendChild(el('section',{class:'top band'},[el('div',{class:'wrap'},[
+    el('a',{class:'back',href:'index.html#more',text:'All work'}),
+    el('h1',{class:'card-type',text:p.title}),
+    facts,
+    (p.intro&&p.intro.length)?el('div',{class:'intro'},p.intro.map(function(t){return el('p',{text:t})})):null
+  ])]));
+
+  // hero film
+  var hero=p.heroYoutube?yt({youtube:p.heroYoutube.id,title:p.heroYoutube.title,poster:p.cover}):p.hero?media(p.hero):null;
+  if(hero){ var hv=hero.querySelector&&hero.querySelector('video'); if(hv)hv.setAttribute('preload','metadata'); page.appendChild(el('section',{class:'hero band'},[el('div',{class:'wrap'},[hero])])); }
+
+  // the rest of the campaign
+  var names={teasers:'Teasers',films:'More films',social:'Social',carousel:'More social',stills:'Stills',bts:'Behind the scenes'};
+  var wide={teasers:1,films:1};
+  var order=p.order||['teasers','films','social','carousel','stills','bts'];
+  Object.keys(names).forEach(function(k){ if(order.indexOf(k)<0)order.push(k); });
+  order.forEach(function(k){
+    var items=p[k]; if(!items||!items.length)return;
+    var light=(k==='stills'||k==='bts');
+    var body;
+    if(wide[k]){
+      body=el('div',{class:'films'+(items.length===1?' one':'')},items.map(function(it){
+        it=norm(it); var f=el('figure',{},[media(it)]); if(it.label)f.appendChild(el('figcaption',{text:it.label})); return f;
+      }));
+    }else{
+      body=el('div',{class:'row'},items.map(function(it){
+        it=norm(it); var f=el('figure',{},[media(it)]); if(it.label)f.appendChild(el('figcaption',{text:it.label})); return f;
+      }));
+    }
+    page.appendChild(el('section',{class:'sec band'+(light?' light':'')},[el('div',{class:'wrap'},[
+      el('h2',{class:'card-type',text:p[k+'Label']||names[k]}), body
+    ])]));
+  });
+
+  // next project
+  var n=list[(i+1)%list.length];
+  page.appendChild(el('section',{class:'next band'},[el('div',{class:'wrap'},[
+    el('p',{class:'label',text:'Next project'}),
+    el('a',{class:'title card-type',href:'project.html?p='+n.slug,text:n.title})
+  ])]));
+
+  // one video at a time
+  document.addEventListener('play',function(e){
+    document.querySelectorAll('video').forEach(function(v){ if(v!==e.target)v.pause(); });
+  },true);
+})();
+</script>
+<script>
+// top-right menu: close on pick, outside click or Escape
+(function(){var m=document.querySelector('.menu');if(!m)return;
+m.addEventListener('click',function(e){if(e.target.closest('ol a'))m.open=false});
+document.addEventListener('click',function(e){if(m.open&&!m.contains(e.target))m.open=false});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.open){m.open=false;m.querySelector('summary').focus()}});})();
+</script>
+</body>
+</html>
