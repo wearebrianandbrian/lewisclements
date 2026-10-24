@@ -190,7 +190,7 @@ section[id]{scroll-margin-top:64px}
   .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
   .shot.big{grid-column:1/-1;grid-row:auto}
   .shot.big .frame{aspect-ratio:16/9;flex:none}
-  .phones{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;min-height:0;padding:30px 4px 18px;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter)}
+  .phones{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;min-height:0;padding:30px 4px 18px;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
   .phones .phone{transform:none!important;margin-inline:0;scroll-snap-align:start;width:170px}
   .wins li{grid-template-columns:1fr;gap:4px}
   .more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -201,7 +201,14 @@ section[id]{scroll-margin-top:64px}
   .nav .pill{padding:9px 16px;font-size:14px}
   .nav .right .pill{display:none}
   .menu summary{padding:8px 16px;font-size:14px}
-  .grid{grid-template-columns:1fr}
+  /* trailers: feature full width, the rest two-up so the section isn't a long scroll */
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .cut{gap:8px}
+  .cut h3{font-size:15px}
+  .cut.feature h3{font-size:22px}
+  .cut .meta{font-size:12px}
+  /* badges on small cards stay on one line */
+  .cut:not(.feature) .badge,.shot:not(.big) .badge{top:6px;left:6px;font-size:10.5px;padding:3px 8px;white-space:nowrap;max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis}
   .made .wrap{flex-direction:column;align-items:flex-start;gap:12px}
   .marquee{width:100%}
 }
