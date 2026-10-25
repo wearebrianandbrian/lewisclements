@@ -116,6 +116,8 @@ section[id]{scroll-margin-top:64px}
 .shot .frame{border:0}
 .shot:hover .frame{outline:3px solid var(--night);outline-offset:3px}
 .social{background:linear-gradient(165deg,var(--plum) 0%,#311C57 60%,#1A1030 100%)}
+.swipe-hint{display:none}
+@keyframes nudge{0%,100%{translate:0}50%{translate:6px}}
 .social .wrap{padding-block:clamp(72px,10vw,120px)}
 .phones{position:relative;display:flex;justify-content:center;align-items:flex-start;min-height:560px;padding-top:30px}
 .phone{position:relative;flex:none;width:clamp(140px,14.5vw,225px);aspect-ratio:9/16;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;border:6px solid var(--night);border-radius:26px;overflow:hidden;background:#000 center/cover;box-shadow:0 18px 40px rgba(0,0,0,.45);outline:3px solid transparent;outline-offset:0}
@@ -135,7 +137,7 @@ section[id]{scroll-margin-top:64px}
   transition:translate .8s cubic-bezier(.34,1.45,.64,1),rotate .8s cubic-bezier(.34,1.45,.64,1),opacity .3s ease-out;
   transition-delay:calc(var(--a) * 140ms)}
 .phones.will-fly.in .phone{opacity:1;translate:0 0;rotate:0deg}
-@media (prefers-reduced-motion:reduce){.phones.will-fly .phone{opacity:1;translate:none;rotate:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.phones.will-fly .phone{opacity:1;translate:none;rotate:none;transition:none}.swipe-hint .arr{animation:none}}
 /* watch pop-up */
 .player{padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible}
 .player::backdrop{background:rgba(12,11,15,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -191,6 +193,9 @@ section[id]{scroll-margin-top:64px}
   .shot.big{grid-column:1/-1;grid-row:auto}
   .shot.big .frame{aspect-ratio:16/9;flex:none}
   .phones{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;min-height:0;padding:30px 4px 18px;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
+  .swipe-hint{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:0 0 -14px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.8;transition:opacity .3s}
+  .swipe-hint .arr{display:inline-block;font-size:18px;animation:nudge 1.4s ease-in-out infinite}
+  .swipe-hint.gone{opacity:0}
   .phones .phone{transform:none!important;margin-inline:0;scroll-snap-align:start;width:170px}
   .wins li{grid-template-columns:1fr;gap:4px}
   .more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -338,8 +343,9 @@ section[id]{scroll-margin-top:64px}
     <div class="wrap">
       <div class="head">
         <h2 class="card-type">Social</h2>
-        <p>From the hero trailer to every last social version, each one built for its platform.</p>
+        <p>From the hero trailer to every last social version. No straight cutdowns unless a brief needs one: every piece is made bespoke for its platform, to cut through the scroll.</p>
       </div>
+      <p class="swipe-hint" aria-hidden="true">Swipe <span class="arr">&rarr;</span></p>
       <div class="phones">
         <button type="button" class="phone" style="--k:-3;--a:3;background-image:url(media/social/dexter.jpg)" data-full="media/dexter/tiktok.mp4" data-project="dexter" data-title="Dexter" aria-label="Watch Dexter"><video muted loop playsinline preload="none" src="media/social/dexter.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
         <button type="button" class="phone" style="--k:-2;--a:2;background-image:url(media/social/criminally.jpg)" data-full="media/criminally-funny/social-2.mp4" data-project="criminally-funny" data-title="Criminally Funny" aria-label="Watch Criminally Funny"><video muted loop playsinline preload="none" src="media/social/criminally.mp4"></video><span class="watch" aria-hidden="true">&#9654; Watch</span></button>
@@ -455,6 +461,9 @@ section[id]{scroll-margin-top:64px}
 
   // Phones fly in the first time the Social section comes into view.
   var fan=document.querySelector('.phones');
+  // phones: fade the swipe hint once someone has scrolled the row
+  var hint=document.querySelector('.swipe-hint');
+  if(fan&&hint)fan.addEventListener('scroll',function(){if(fan.scrollLeft>20)hint.classList.add('gone')},{passive:true});
   if(fan&&!reduce&&'IntersectionObserver' in window){
     fan.classList.add('will-fly');
     var fo=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ fan.classList.add('in'); fo.disconnect(); } },{threshold:.25});
