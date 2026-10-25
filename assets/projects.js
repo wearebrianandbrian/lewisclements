@@ -67,7 +67,6 @@ window.PROJECTS = [
     title: 'Tom Cruise Week',
     client: 'Film4',
     year: '2025',
-    award: 'GEMA 2025 nominee, Best Film',
     role: 'Edit',
     intro: [
       'To launch Film4’s Tom Cruise Week, we mashed together every version of Hollywood’s busiest man. Running Tom. Angry Tom. Lawyer Tom. Take Out Tom. Even Sleeping Tom.',
@@ -285,7 +284,6 @@ window.PROJECTS = [
     client: 'Channel 4',
     year: '2025',
     role: 'Concept, direction & edit',
-    award: 'GEMA 2026 nominee, Best Factual (Originated)',
     intro: [
       'A beautifully surreal script, a bespoke shoot with Joe Wicks and a concept that was loved from the moment it was pitched.',
       'I helped shape the idea, directed the shoot and cut the campaign, from the hero film to the social edits, with print and out of home carrying it onto the street.',
@@ -319,7 +317,6 @@ window.PROJECTS = [
     title: 'Crank Up the Comedy',
     client: 'Channel 4',
     year: '2026',
-    award: 'GEMA 2026 nominee, Best Comedy',
     role: 'Edit & voiceover',
     intro: [
       'For Channel 4’s latest comedy campaign, we threw some of C4’s funniest faces into one sweaty, stupid, deeply chaotic nightclub, then topped it off with a banger that’ll be stuck in your head for days, months, or possibly years.',
@@ -449,7 +446,6 @@ window.PROJECTS = [
     title: 'Virgin Island',
     client: 'Channel 4',
     year: '2025',
-    award: 'GEMA 2025 nominee, Best Sound',
     intro: [],
     cover: 'media/virgin-island/trailer-40.poster.jpg',
     hero: 'media/virgin-island/trailer-40.mp4',
@@ -490,7 +486,6 @@ window.PROJECTS = [
     title: 'Easter’s Really Good',
     client: 'Channel 4',
     year: '2025',
-    award: 'GEMA 2025 nominee, Best Music',
     intro: [],
     cover: 'media/easters-good/trailer-40.poster.jpg',
     hero: 'media/easters-good/trailer-40.mp4',
