@@ -282,6 +282,7 @@ window.PROJECTS = [
     slug: 'joe-wicks',
     title: 'Joe Wicks: Licensed to Kill',
     client: 'Channel 4',
+    award: 'Gold, GEMA 2026',
     year: '2025',
     role: 'Concept, direction & edit',
     intro: [
@@ -518,5 +519,14 @@ window.PROJECTS = [
     intro: [],
     cover: 'media/stand-up-sundays/trailer.poster.jpg',
     hero: 'media/stand-up-sundays/trailer.mp4',
+  },
+  {
+    slug: 'jason-bourne-collection',
+    title: 'Jason Bourne Collection',
+    client: 'Film4',
+    year: '2026',
+    intro: [],
+    cover: 'media/jason-bourne/trailer-40.poster.jpg',
+    hero: 'media/jason-bourne/trailer-40.mp4',
   },
 ];
